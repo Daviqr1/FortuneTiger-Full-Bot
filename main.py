@@ -1,81 +1,83 @@
-from datetime import datetime
-import telebot
-import time
-import random
-from config import api_key, chat_id
+import streamlit as st
 
-# Caminho da imagem
-image = 'C:/Users/devid/Desktop/Fortunetiger_Bot/Fotos/1.jpg'
+# Definindo informações dos bots
+bots_info = [
+    {
+        "nome": "Fortune Tiger",
+        "descricao": "O Fortune Tiger é um bot de previsão de mercado altamente preciso, projetado para ajudar os investidores a identificar oportunidades lucrativas.",
+        "link_telegram": "https://t.me/sinais_tigre",
+        "imagem": "Fotos/FT1.jpeg",
+        "button": "https://wa.me/5527997602355"
+    },
+    {
+        "nome": "Jungle Delight",
+        "descricao": "O Jungle Delight é um bot de cassino online com uma ampla variedade de processamento para encontrar a brecha perfeita do jogo.",
+        "link_telegram": "https://t.me/+Hgr-vsIrt0Q2YTRh",
+        "imagem": "Fotos/PG3.jpg",
+        "button": "https://wa.me/5527997602356"
+    },
+    {
+        "nome": "Fortune Ox",
+        "descricao": "O Fortune Ox é um bot de negociação automatizada que utiliza algoritmos avançados para realizar operações de forma eficiente.",
+        "link_telegram": "https://t.me/sinais_tigre",
+        "imagem": "Fotos/FT2.jpg",
+        "button": "https://wa.me/5527997602357"
+    },
+    {
+        "nome": "Fortune Rabbit",
+        "descricao": "O Fortune Rabbit é um bot de investimento que oferece uma variedade de opções de portfólio para atender às necessidades de um apostador a longo prazo.",
+        "link_telegram": "https://t.me/+Hgr-vsIrt0Q2YTRh",
+        "imagem": "Fotos/FT4.png",
+        "button": "https://wa.me/5527997602358"
+    },
+]
 
-# Link do seu site, se aplicável
-LINK_SITE = 'https://www.instagram.com/davi_b.rezende/'
+# Configurando a página para dispositivos móveis
+st.set_page_config(
+    page_title="Informações dos Bots",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
 
-# Inicialização do bot
-bot = telebot.TeleBot(api_key)
+# Título e subtítulo
+st.title('Informações dos Bots')
 
-def ALERT_GAME1():
-    # Obter hora atual no fuso horário da América/São_Paulo
-    now = datetime.now()
-    hora = now.strftime('%H:%M:%S')
-
-    # Enviar mensagem de alerta
-    message_id = bot.send_message(chat_id=chat_id, text=f'nova oportunidade de entrada às {hora}').message_id
-    # Atualizar o ID da mensagem no banco de dados (substitua com sua própria lógica)
-    # bd.message_ids1 = message_id
-    # Aguardar 15 segundos
-    time.sleep(15)
-    # Marcar que a mensagem foi deletada (substitua com sua própria lógica)
-    # bd.message_delete1 = True
-
-while True:
-    # Obter hora atual no fuso horário da América/São_Paulo
-    now = datetime.now()
-    hora = now.strftime('%H:%M:%S')
-
-    print(hora)
-
-    # Gerar números aleatórios
-    numero_aleatorio1 = random.randint(1, 10)
-    numero_aleatorio2 = random.randint(1, 10)
-
-    # Enviar mensagem com sinal de negociação
-    mensagem = f'''
-✅ BRECHA IDENTIFICADA ✅
-
-🎁 [CADASTRE-SE AQUI]({LINK_SITE}) 🎁
-
-🦝 Jugle Delight 🦝
-
-🔥 {numero_aleatorio1} X NORMAL
-⚡️ {numero_aleatorio2} X TURBO
-
-⏰ VÁLIDO POR 5 MINUTOS ⏰
-
-💸 Banca Recomendada R$25,00 💸'''
-
-    bot.send_photo(chat_id=chat_id, photo=open(image, 'rb'), caption=mensagem, parse_mode='Markdown')
-
-    # Aguardar 240 segundos (4 minutos)
-    time.sleep(240)
-
-    # Enviar mensagem informando que a carta foi liberada
-    mensagem_carta = '''
-    🚨🚨CARTA LIBERADA🚨🚨
+# Exibindo informações de cada bot
+for idx, bot_info in enumerate(bots_info):
+    st.markdown(f"## {bot_info['nome']}")
     
-    ✅✅✅ GREEEN ✅✅✅
-    '''
-    bot.send_message(chat_id=chat_id, text=mensagem_carta, parse_mode='Markdown', disable_web_page_preview=True)
+    # Dividindo a largura da tela em colunas
+    col1, col2 = st.columns([2, 3])
     
-    # Aguardar 60 segundos
-    time.sleep(60)
+    with col1:
+        # Exibindo a imagem do bot
+        st.image(bot_info['imagem'], width=240, use_column_width=False)
+    
+    with col2:
+        # Exibindo as informações do bot
+        st.write(bot_info['descricao'])
+        st.markdown(f"Link do Telegram: [{bot_info['nome']}]({bot_info['link_telegram']})")
+        st.button(f"Adquirir {bot_info['nome']}", key=f"button_{idx}")
+    
+    st.markdown("---")
 
-    mensagem_aten =  '''
-            🆘🆘 ATENÇÃO 🆘🆘
+# Definindo informações de contato do desenvolvedor
+contato_desenvolvedor = {
+    "Email": "davidbecam006@gmail.com",
+    "Telefone": "+55 027 997602355",
+    "Github": "https://github.com/Daviqr1",
+    "Linkedin": "https://www.linkedin.com/in/davi-rezende-09540b222/",
+    "Instagram": "https://www.instagram.com/davi_b.rezende/",
+}
 
-🚨Dica: Alterne os giros entre normal e turbo, se tiver um GRANDE ganho, PARE, e esoere uma nova oportunidade de entrada!.
+# Título e subtítulo
+st.title('Contato do Desenvolvedor')
+st.markdown('Entre em contato com o desenvolvedor para mais informações sobre o projeto')
 
-⚠️ Os Sinais Fucionam apenas na plataforma Airbety ⚠️
-            🎁CADASTRE-SE AQUI🎁
-CADASTRE-SE ACIMA E COMECE A PEGAR OS GREEEENS ✅✅✅
-'''
-    bot.send_message(chat_id=chat_id, text=mensagem_aten, parse_mode='markdown')
+# Exibindo informações de contato com animações
+for meio_contato, valor in contato_desenvolvedor.items():
+    with st.sidebar.expander(f"{meio_contato}"):
+        st.markdown(f"**{meio_contato}:** {valor}")
+
+# Rodapé
+st.sidebar.text('Desenvolvido por Davi Rezende 👋')
