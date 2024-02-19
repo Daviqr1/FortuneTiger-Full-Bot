@@ -5,7 +5,6 @@ import random
 from config import api_key, chat_id
 
 
-
 # Chave de API do seu bot Telegram
 
 
