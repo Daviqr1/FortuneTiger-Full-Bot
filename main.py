@@ -4,9 +4,14 @@ import time
 import random
 from config import api_key, chat_id
 
+<<<<<<< HEAD
 
 # Chave de API do seu bot Telegram
 
+=======
+# Caminho da imagem
+image = 'C:/Users/devid/Desktop/Fortunetiger_Bot/Fotos/1.jpg'
+>>>>>>> ece51afe6e2c518de18a861f13551686ba19916a
 
 # Link do seu site, se aplicável
 LINK_SITE = 'https://www.instagram.com/davi_b.rezende/'
@@ -39,17 +44,13 @@ while True:
     numero_aleatorio1 = random.randint(1, 10)
     numero_aleatorio2 = random.randint(1, 10)
 
-    # Loop para enviar mensagens com sinais de negociação
-    for i in range(1, 10):
-        print(numero_aleatorio1, numero_aleatorio2)
-
-        # Enviar mensagem com sinal de negociação
-        mensagem = f'''
+    # Enviar mensagem com sinal de negociação
+    mensagem = f'''
 ✅ BRECHA IDENTIFICADA ✅
 
 🎁 [CADASTRE-SE AQUI]({LINK_SITE}) 🎁
 
-🐯 Fortune Tiger 🐯
+🦝 Jugle Delight 🦝
 
 🔥 {numero_aleatorio1} X NORMAL
 ⚡️ {numero_aleatorio2} X TURBO
@@ -58,9 +59,9 @@ while True:
 
 💸 Banca Recomendada R$25,00 💸'''
 
-    bot.send_message(chat_id=chat_id, text=mensagem, parse_mode='Markdown')
+    bot.send_photo(chat_id=chat_id, photo=open(image, 'rb'), caption=mensagem, parse_mode='Markdown')
 
-        # Aguardar 240 segundos (4 minutos)
+    # Aguardar 240 segundos (4 minutos)
     time.sleep(240)
 
     # Enviar mensagem informando que a carta foi liberada
